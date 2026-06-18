@@ -37,5 +37,5 @@ jobs:
           RENOVATE_AUTODISCOVER: "true"
           RENOVATE_AUTODISCOVER_FILTER: ${{ matrix.owner }}/*
         with:
-          configurationFile: .github/renovate.json
+          configurationFile: .github/renovate-config.json5
           token: ${{ steps.app-token.outputs.token }}
