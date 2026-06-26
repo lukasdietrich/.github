@@ -2,6 +2,15 @@ name: Renovate
 
 on:
   workflow_dispatch:
+    inputs:
+      log_level:
+        description: Logging level
+        required: true
+        type: choice
+        default: info
+        options:
+          - info
+          - debug
   schedule:
     - cron: "15 8-22/6 * * *"
 
@@ -32,6 +41,7 @@ jobs:
       - name: Self-hosted Renovate
         uses: renovatebot/github-action@6d859fc95779be83a0335ca704879b47e5d79641 # v46.1.16
         env:
+          LOG_LEVEL: ${{ github.event.inputs.log_level }}
           RENOVATE_USERNAME: ${{ vars.RENOVATE_USERNAME }}
           RENOVATE_GIT_AUTHOR: ${{ vars.RENOVATE_GIT_AUTHOR }}
           RENOVATE_AUTODISCOVER: "true"
